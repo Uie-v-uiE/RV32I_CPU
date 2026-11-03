@@ -1,0 +1,77 @@
+m255
+K4
+z2
+!s11f MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Xilinx/Harness/Project/new_prj/z7-rv32i-soc
+T_opt
+!s110 1793732895
+VXTO;L_4DD?:91n?`F_[VF3
+Z1 04 8 4 work tb_rv32i fast 0
+=1-00e04c167f20-6aea311e-370-23e4
+o-quiet -auto_acc_if_foreign -work work -g PROG=vectors/prog_fib.hex
+Z2 tCvgOpt 0
+n@_opt
+Z3 OL;O;2020.4;71
+R0
+T_opt1
+!s110 1793733062
+V^MnTF>67UFI?]lHKFg9Qk3
+R1
+=1-00e04c167f20-6aea31c6-17c-2850
+o-quiet -auto_acc_if_foreign -work work
+R2
+n@_opt1
+R3
+R0
+vrv32i_core
+Z4 !s110 1793735102
+!i10b 1
+!s100 ^@jM[aCAShNnNR]>;9dRE2
+Z5 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`KomeHKe2C4N`K6K>ZP0^2
+R0
+w1793732882
+8rtl/rv32i_core.v
+Frtl/rv32i_core.v
+!i122 21
+L0 14 233
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 OL;L;2020.4;71
+r1
+!s85 0
+31
+Z8 !s108 1793735102.000000
+!s107 tb/tb_rv32i.v|rtl/rv32i_core.v|
+Z9 !s90 rtl/rv32i_core.v|tb/tb_rv32i.v|
+!i113 0
+Z10 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vtb_rv32i
+R4
+!i10b 1
+!s100 `IDTD9?`ekOa_`V1mSC_S2
+R5
+IPlDj;h5T;9oG@_XmXEMM^0
+R0
+w1793733060
+8tb/tb_rv32i.v
+Ftb/tb_rv32i.v
+!i122 21
+L0 5 91
+R6
+R7
+r1
+!s85 0
+31
+R8
+Z11 !s107 tb/tb_rv32i.v|rtl/rv32i_core.v|
+R9
+!i113 0
+R10
+R2
