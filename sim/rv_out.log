@@ -9,18 +9,18 @@ Reading pref.tcl
 # vmap work sim/work 
 # Modifying modelsim.ini
 # Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-# Start time: 03:45:02 on Nov 04,2026
+# Start time: 07:34:33 on Nov 04,2026
 # vlog rtl/rv32i_core.v tb/tb_rv32i.v 
 # -- Compiling module rv32i_core
 # -- Compiling module tb_rv32i
 # 
 # Top level modules:
 # 	tb_rv32i
-# End time: 03:45:02 on Nov 04,2026, Elapsed time: 0:00:00
+# End time: 07:34:33 on Nov 04,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim work.tb_rv32i "+TRACE=vectors/trace.hex" 
-# Start time: 03:45:02 on Nov 04,2026
-# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Start time: 07:34:33 on Nov 04,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
 # //  ModelSim SE-64 2020.4 Oct 13 2020
 # //
 # //  Copyright 1991-2020 Mentor Graphics Corporation
@@ -36,32 +36,48 @@ Reading pref.tcl
 # //
 # Loading work.tb_rv32i(fast)
 # RV: expect 612 words (204 retires)
-# DBG t=65000 pc=0 ifd_v=0 dex_v=0 exm_v=0 mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=75000 pc=x ifd_v=x dex_v=0 exm_v=0 mwb_v=0 ret=0 inst=00000513
-# DBG t=85000 pc=x ifd_v=1 dex_v=x exm_v=0 mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=95000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=105000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=115000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=125000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=135000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=145000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=155000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=165000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=175000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=185000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=195000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=205000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=215000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=225000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=235000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=245000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=255000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=265000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=275000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
-# DBG t=285000 pc=x ifd_v=x dex_v=x exm_v=x mwb_v=0 ret=0 inst=xxxxxxxx
+# DBG i=1 t=65000 rst=0 pc=00000000 imem=00000513 prog0=00000513 ifd_v=0 inst=00000013 redirect=0
+# DBG i=2 t=75000 rst=0 pc=00000004 imem=00100593 prog0=00000513 ifd_v=1 inst=00000513 redirect=0
+# DBG i=3 t=85000 rst=0 pc=00000008 imem=10000613 prog0=00000513 ifd_v=1 inst=00100593 redirect=0
+# DBG i=4 t=95000 rst=0 pc=0000000c imem=01000693 prog0=00000513 ifd_v=1 inst=10000613 redirect=0
+# DBG i=5 t=105000 rst=0 pc=00000010 imem=00a62023 prog0=00000513 ifd_v=1 inst=01000693 redirect=0
+# DBG i=6 t=115000 rst=0 pc=00000014 imem=00b50733 prog0=00000513 ifd_v=1 inst=00a62023 redirect=0
+# DBG i=7 t=125000 rst=0 pc=00000018 imem=00058513 prog0=00000513 ifd_v=1 inst=00b50733 redirect=0
+# DBG i=8 t=135000 rst=0 pc=0000001c imem=00070593 prog0=00000513 ifd_v=1 inst=00058513 redirect=0
+# DBG i=9 t=145000 rst=0 pc=00000020 imem=00460613 prog0=00000513 ifd_v=1 inst=00070593 redirect=0
+# DBG i=10 t=155000 rst=0 pc=00000024 imem=fff68693 prog0=00000513 ifd_v=1 inst=00460613 redirect=0
+# DBG i=11 t=165000 rst=0 pc=00000028 imem=fe0694e3 prog0=00000513 ifd_v=1 inst=fff68693 redirect=0
+# DBG i=12 t=175000 rst=0 pc=0000002c imem=10000613 prog0=00000513 ifd_v=1 inst=fe0694e3 redirect=0
+# DBG i=13 t=185000 rst=0 pc=00000030 imem=01000693 prog0=00000513 ifd_v=1 inst=10000613 redirect=0
+# DBG i=14 t=195000 rst=0 pc=00000034 imem=00000713 prog0=00000513 ifd_v=1 inst=01000693 redirect=0
+# DBG i=15 t=205000 rst=0 pc=00000038 imem=00062783 prog0=00000513 ifd_v=1 inst=00000713 redirect=0
+# DBG i=16 t=215000 rst=0 pc=0000003c imem=00f70733 prog0=00000513 ifd_v=1 inst=00062783 redirect=0
+# DBG i=17 t=225000 rst=0 pc=00000040 imem=00460613 prog0=00000513 ifd_v=1 inst=00f70733 redirect=0
+# DBG i=18 t=235000 rst=0 pc=00000040 imem=00460613 prog0=00000513 ifd_v=0 inst=00460613 redirect=0
+# DBG i=19 t=245000 rst=0 pc=00000044 imem=fff68693 prog0=00000513 ifd_v=1 inst=00460613 redirect=0
+# DBG i=20 t=255000 rst=0 pc=00000048 imem=fe0698e3 prog0=00000513 ifd_v=1 inst=fff68693 redirect=0
+# DBG i=21 t=265000 rst=0 pc=0000004c imem=000013b7 prog0=00000513 ifd_v=1 inst=fe0698e3 redirect=0
+# DBG i=22 t=275000 rst=0 pc=00000050 imem=00e3a023 prog0=00000513 ifd_v=1 inst=000013b7 redirect=0
+# DBG i=23 t=285000 rst=0 pc=00000054 imem=00838e13 prog0=00000513 ifd_v=1 inst=00e3a023 redirect=0
+# DBG i=24 t=295000 rst=0 pc=00000058 imem=00200793 prog0=00000513 ifd_v=1 inst=00838e13 redirect=0
+# DBG i=25 t=305000 rst=0 pc=0000005c imem=00fe2023 prog0=00000513 ifd_v=1 inst=00200793 redirect=0
+# DBG i=26 t=315000 rst=0 pc=00000060 imem=fd9ff06f prog0=00000513 ifd_v=1 inst=00fe2023 redirect=0
+# DBG i=27 t=325000 rst=0 pc=00000064 imem=xxxxxxxx prog0=00000513 ifd_v=1 inst=fd9ff06f redirect=0
+# DBG i=28 t=335000 rst=0 pc=00000068 imem=xxxxxxxx prog0=00000513 ifd_v=1 inst=xxxxxxxx redirect=1
+# DBG i=29 t=345000 rst=0 pc=00000038 imem=00062783 prog0=00000513 ifd_v=0 inst=xxxxxxxx redirect=x
+# DBG i=30 t=355000 rst=0 pc=0000003c imem=00f70733 prog0=00000513 ifd_v=1 inst=00062783 redirect=x
+# DBG i=31 t=365000 rst=0 pc=00000040 imem=00460613 prog0=00000513 ifd_v=1 inst=00f70733 redirect=0
+# DBG i=32 t=375000 rst=0 pc=00000040 imem=00460613 prog0=00000513 ifd_v=0 inst=00460613 redirect=0
+# DBG i=33 t=385000 rst=0 pc=00000044 imem=fff68693 prog0=00000513 ifd_v=1 inst=00460613 redirect=0
+# DBG i=34 t=395000 rst=0 pc=00000048 imem=fe0698e3 prog0=00000513 ifd_v=1 inst=fff68693 redirect=0
+# DBG i=35 t=405000 rst=0 pc=0000004c imem=000013b7 prog0=00000513 ifd_v=1 inst=fe0698e3 redirect=0
+# DBG i=36 t=415000 rst=0 pc=00000050 imem=00e3a023 prog0=00000513 ifd_v=1 inst=000013b7 redirect=0
+# DBG i=37 t=425000 rst=0 pc=00000054 imem=00838e13 prog0=00000513 ifd_v=1 inst=00e3a023 redirect=0
+# DBG i=38 t=435000 rst=0 pc=00000058 imem=00200793 prog0=00000513 ifd_v=1 inst=00838e13 redirect=0
+# DBG i=39 t=445000 rst=0 pc=0000005c imem=00fe2023 prog0=00000513 ifd_v=1 inst=00200793 redirect=0
 # RV WARN: tohost ??????,???ии???????????
 # RV FAIL: retired 0 < expected 204
-# ** Note: $finish    : tb/tb_rv32i.v(78)
+# ** Note: $finish    : tb/tb_rv32i.v(79)
 #    Time: 4000135 ns  Iteration: 1  Instance: /tb_rv32i
-# End time: 03:45:03 on Nov 04,2026, Elapsed time: 0:00:01
+# End time: 07:34:34 on Nov 04,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
