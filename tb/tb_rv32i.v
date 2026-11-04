@@ -64,11 +64,10 @@ module tb_rv32i;
         while (!tohost && i < 400000) begin
             @(posedge clk);
             i = i + 1;
-            if (i < 40)
-                $display("DBG i=%0d t=%0t rst=%b pc=%h imem=%h prog0=%h ifd_v=%b inst=%h redirect=%b",
-                         i, $time, dut.rst, dut.pc, dut.imem_rdata,
-                         dut.prog[0], dut.ifd_v, dut.ifd_inst,
-                         dut.redirect);
+            if (dut.dex_v && dut.dex_pc == 32'h14)
+                $display("EXDBG t=%0t rsv1=%0d rsv2=%0d fwd_a=%0d fwd_b=%0d alu=%0d dex_pc=%h",
+                         $time, dut.dex_rsv1, dut.dex_rsv2, dut.fwd_a, dut.fwd_b,
+                         dut.alu_out, dut.dex_pc);
         end
         if (!tohost) $display("RV WARN: tohost 未写,按超时比对");
         $display("RFDBG a0=%h a1=%h a2=%h a3=%h a4=%h",

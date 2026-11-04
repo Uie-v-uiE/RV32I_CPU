@@ -83,10 +83,10 @@ module rv32i_core #(
 
     // ==================== 前递 ====================
     wire        exm_fwd_v = exm_v && exm_wr && !exm_ld;   // load 取值未就绪不前递
-    wire [31:0] fwd_a = (dex_v && dex_rs1 != 0 && dex_rs1 == dex_rd && exm_fwd_v) ? exm_alu :
+    wire [31:0] fwd_a = (dex_v && dex_rs1 != 0 && dex_rs1 == exm_rd && exm_fwd_v) ? exm_alu :
                         (dex_v && dex_rs1 != 0 && dex_rs1 == mwb_rd && mwb_v && mwb_wr) ? (mwb_ld ? mwb_ldata : mwb_alu) :
                         dex_rsv1;
-    wire [31:0] fwd_b = (dex_v && dex_rs2 != 0 && dex_rs2 == dex_rd && exm_fwd_v) ? exm_alu :
+    wire [31:0] fwd_b = (dex_v && dex_rs2 != 0 && dex_rs2 == exm_rd && exm_fwd_v) ? exm_alu :
                         (dex_v && dex_rs2 != 0 && dex_rs2 == mwb_rd && mwb_v && mwb_wr) ? (mwb_ld ? mwb_ldata : mwb_alu) :
                         dex_rsv2;
 
@@ -99,10 +99,11 @@ module rv32i_core #(
 
     wire        sub_sel  = dex_inst[30] & (ex_is_alur | (ex_is_alui & (ex_f3 == 3'd5)));
     wire [31:0] op_a     = ex_is_auipc ? dex_pc : fwd_a;
-    wire [31:0] op_b     = (ex_is_lui | ex_is_auipc) ? imm_u :
-                           (ex_is_jal)            ? imm_j :
-                           (ex_is_branch)         ? imm_b :
-                           (ex_is_store)          ? imm_s : imm_i;
+    wire [31:0] op_b     = ex_is_store          ? imm_s :
+                           ex_is_branch         ? imm_b :
+                           ex_is_alur           ? fwd_b :    // R 型第二操作数 = 寄存器
+                           (ex_is_lui | ex_is_auipc) ? imm_u :
+                           ex_is_jal            ? imm_j : imm_i;
     wire [4:0]  shamt    = op_b[4:0];
     wire [31:0] sum      = op_a + op_b;
     wire [31:0] alu_out =
@@ -178,7 +179,7 @@ module rv32i_core #(
     // ==================== 退休踪迹 ====================
     assign ret_valid  = mwb_v;
     assign ret_pc     = mwb_pc;
-    assign ret_rd     = mwb_rd;
+    assign ret_rd     = mwb_wr ? mwb_rd : 5'b0;   // 不写回的指令(分支/store)rd 屏蔽为 0
     assign ret_rd_en  = mwb_wr;
     assign ret_wdata  = rf_wd;
 
