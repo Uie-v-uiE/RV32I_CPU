@@ -31,10 +31,12 @@ module tb_rv32i;
             got_mem[n_got+1]    <= ret_wdata;
             got_mem[n_got+2]    <= {31'b0, ret_rd_en, ret_rd};
             n_got <= n_got + 3;
+            $display("RET %0d pc=%h wdata=%h rden=%b rd=%0d",
+                     n_got/3, ret_pc, ret_wdata, ret_rd_en, ret_rd);
         end
     end
 
-    integer i, errors, fd, code, n, dbg;
+    integer i, errors, fd, code, n;
     reg [1023:0] tracefile;
     reg [31:0] w;
 
@@ -60,18 +62,15 @@ module tb_rv32i;
 
         // 等 tohost 或超时
         i = 0;
-        dbg = 0;
         while (!tohost && i < 400000) begin
             @(posedge clk);
             i = i + 1;
-            if (dut.dex_v && dut.dex_pc == 32'h14)
-                $display("EXDBG t=%0t rsv1=%0d rsv2=%0d fwd_a=%0d fwd_b=%0d alu=%0d dex_pc=%h",
-                         $time, dut.dex_rsv1, dut.dex_rsv2, dut.fwd_a, dut.fwd_b,
-                         dut.alu_out, dut.dex_pc);
         end
-        if (!tohost) $display("RV WARN: tohost 未写,按超时比对");
-        $display("RFDBG a0=%h a1=%h a2=%h a3=%h a4=%h",
-                 dut.rf[10], dut.rf[11], dut.rf[12], dut.rf[13], dut.rf[14]);
+        if (!tohost) begin
+            $display("RV WARN: tohost 未写,按超时比对");
+            $display("STUCK pc=%h dex_v=%b dex_pc=%h stall=%b exm_v=%b flush=%b",
+                     dut.pc, dut.dex_v, dut.dex_pc, dut.stall, dut.exm_v, dut.flush);
+        end
         $display("RFHIST pc=%h w=%b rd=%b wd=%h",
                  dut.mwb_pc, dut.mwb_wr, dut.mwb_rd, dut.rf_wd);
 

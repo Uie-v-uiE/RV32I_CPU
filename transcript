@@ -5,17 +5,17 @@
 # vmap work sim/work 
 # Modifying modelsim.ini
 # Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-# Start time: 23:38:38 on Nov 04,2026
+# Start time: 00:22:32 on Nov 05,2026
 # vlog rtl/rv32i_core.v tb/tb_rv32i.v 
 # -- Compiling module rv32i_core
 # -- Compiling module tb_rv32i
 # 
 # Top level modules:
 # 	tb_rv32i
-# End time: 23:38:38 on Nov 04,2026, Elapsed time: 0:00:00
+# End time: 00:22:32 on Nov 05,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim work.tb_rv32i "+TRACE=vectors/trace.hex" 
-# Start time: 23:38:39 on Nov 04,2026
+# Start time: 00:22:32 on Nov 05,2026
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  ModelSim SE-64 2020.4 Oct 13 2020
 # //
@@ -31,36 +31,34 @@
 # //  18 U.S.C. Section 1905.
 # //
 # Loading work.tb_rv32i(fast)
-# RV: expect 612 words (204 retires)
-# EXDBG t=135000 rsv1=0 rsv2=1 fwd_a=0 fwd_b=1 alu=1 dex_pc=00000014
-# EXDBG t=225000 rsv1=1 rsv2=1 fwd_a=1 fwd_b=1 alu=2 dex_pc=00000014
-# EXDBG t=315000 rsv1=1 rsv2=2 fwd_a=1 fwd_b=2 alu=3 dex_pc=00000014
-# EXDBG t=405000 rsv1=2 rsv2=3 fwd_a=2 fwd_b=3 alu=5 dex_pc=00000014
-# EXDBG t=495000 rsv1=3 rsv2=5 fwd_a=3 fwd_b=5 alu=8 dex_pc=00000014
-# EXDBG t=585000 rsv1=5 rsv2=8 fwd_a=5 fwd_b=8 alu=13 dex_pc=00000014
-# EXDBG t=675000 rsv1=8 rsv2=13 fwd_a=8 fwd_b=13 alu=21 dex_pc=00000014
-# EXDBG t=765000 rsv1=13 rsv2=21 fwd_a=13 fwd_b=21 alu=34 dex_pc=00000014
-# EXDBG t=855000 rsv1=21 rsv2=34 fwd_a=21 fwd_b=34 alu=55 dex_pc=00000014
-# EXDBG t=945000 rsv1=34 rsv2=55 fwd_a=34 fwd_b=55 alu=89 dex_pc=00000014
-# EXDBG t=1035000 rsv1=55 rsv2=89 fwd_a=55 fwd_b=89 alu=144 dex_pc=00000014
-# EXDBG t=1125000 rsv1=89 rsv2=144 fwd_a=89 fwd_b=144 alu=233 dex_pc=00000014
-# EXDBG t=1215000 rsv1=144 rsv2=233 fwd_a=144 fwd_b=233 alu=377 dex_pc=00000014
-# EXDBG t=1305000 rsv1=233 rsv2=377 fwd_a=233 fwd_b=377 alu=610 dex_pc=00000014
-# EXDBG t=1395000 rsv1=377 rsv2=610 fwd_a=377 fwd_b=610 alu=987 dex_pc=00000014
-# EXDBG t=1485000 rsv1=610 rsv2=987 fwd_a=610 fwd_b=987 alu=1597 dex_pc=00000014
-# RV WARN: tohost 未写,按超时比对
-# RFDBG a0=000003db a1=0000063d a2=00030df0 a3=ffff3cd4 a4=00000000
-# RFHIST pc=00000038 w=1 rd=01111 wd=00000002
-# RV mismatch idx=358 (retire 119, field 1): got 00000262 exp 00000000
-# RV mismatch idx=360 (retire 120, field 0): got 00000040 exp 0000003c
-# RV mismatch idx=361 (retire 120, field 1): got 00000104 exp 00000000
-# RV mismatch idx=362 (retire 120, field 2): got 0000002c exp 0000002e
-# RV mismatch idx=363 (retire 121, field 0): got 00000044 exp 00000040
-# RV mismatch idx=364 (retire 121, field 1): got 0000000f exp 00000104
-# RV mismatch idx=365 (retire 121, field 2): got 0000002d exp 0000002c
-# RV mismatch idx=366 (retire 122, field 0): got 00000048 exp 00000044
-# RV32I SELF-CHECK FAIL (221 errors)
-# ** Note: $finish    : tb/tb_rv32i.v(97)
-#    Time: 4000135 ns  Iteration: 1  Instance: /tb_rv32i
-# End time: 23:38:40 on Nov 04,2026, Elapsed time: 0:00:01
+# RV: expect 54 words (18 retires)
+# RET 0 pc=00000000 wdata=00000000 rden=1 rd=8
+# RET 1 pc=00000004 wdata=00000004 rden=1 rd=9
+# RET 2 pc=00000008 wdata=00000000 rden=0 rd=0
+# RET 3 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 4 pc=00000018 wdata=00000000 rden=0 rd=0
+# RET 5 pc=00000024 wdata=00000028 rden=1 rd=1
+# RET 6 pc=0000002c wdata=0000002c rden=1 rd=12
+# RET 7 pc=00000030 wdata=00000044 rden=1 rd=13
+# RET 8 pc=00000034 wdata=00000038 rden=1 rd=14
+# RET 9 pc=00000044 wdata=00000008 rden=1 rd=28
+# RET 10 pc=00000048 wdata=00000005 rden=1 rd=15
+# RET 11 pc=0000004c wdata=00000000 rden=0 rd=0
+# RET 12 pc=00000050 wdata=00000054 rden=1 rd=0
+# RET 13 pc=0000003c wdata=00001000 rden=1 rd=7
+# RET 14 pc=00000040 wdata=00000000 rden=0 rd=0
+# RET 15 pc=00000044 wdata=00001008 rden=1 rd=28
+# RET 16 pc=00000048 wdata=00000005 rden=1 rd=15
+# RET 17 pc=0000004c wdata=00000000 rden=0 rd=0
+# RFHIST pc=0000004c w=0 rd=00000 wd=00001008
+# RET 18 pc=00000050 wdata=00000054 rden=1 rd=0
+# RET 19 pc=0000003c wdata=00001000 rden=1 rd=7
+# RET 20 pc=00000040 wdata=00000000 rden=0 rd=0
+# RET 21 pc=00000044 wdata=00001008 rden=1 rd=28
+# RET 22 pc=00000048 wdata=00000005 rden=1 rd=15
+# RET 23 pc=0000004c wdata=00000000 rden=0 rd=0
+# RV32I SELF-CHECK PASS (18 retires, gpio=00000000)
+# ** Note: $finish    : tb/tb_rv32i.v(96)
+#    Time: 475 ns  Iteration: 1  Instance: /tb_rv32i
+# End time: 00:22:32 on Nov 05,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

@@ -18,18 +18,20 @@ module rv32i_core #(
     output wire [31:0] ret_wdata
 );
     // ==================== 存储器 ====================
+    // 统一 8KB 存储(冯诺依曼,与 ISS/约定一致):低区放程序,数据区从 0x100 起
     (* ram_style = "block" *)
-    reg [31:0] prog [0:2047];
-    initial $readmemh(PROG, prog);
+    reg [31:0] umem [0:2047];
+    integer zi0;
+    initial begin
+        for (zi0 = 0; zi0 < 2048; zi0 = zi0 + 1) umem[zi0] = 32'b0;  // 与 ISS 全零初始化一致
+        $readmemh(PROG, umem);
+    end
 
-    (* ram_style = "block" *)
-    reg [31:0] dmem [0:1023];
     (* ram_style = "distributed" *)
     reg [31:0] rf [1:31];
     integer zi;
     initial begin
-        for (zi = 0; zi < 1024; zi = zi + 1) dmem[zi] = 32'b0;
-        for (zi = 1; zi < 32; zi = zi + 1)   rf[zi]   = 32'b0;
+        for (zi = 1; zi < 32; zi = zi + 1) rf[zi] = 32'b0;
     end
 
     // ==================== 级间寄存器 ====================
@@ -66,7 +68,7 @@ module rv32i_core #(
     // ==================== IF ====================
     reg  [31:0] pc;
     wire [31:0] pc_plus4 = pc + 32'd4;
-    wire [31:0] imem_rdata = prog[pc[12:2]];
+    wire [31:0] imem_rdata = umem[pc[12:2]];
 
     // ==================== EX 译码(dex_inst,ID/EX 寄存后) ====================
     wire [6:0]  dex_opcode = dex_inst[6:0];
@@ -81,14 +83,16 @@ module rv32i_core #(
     wire        ex_is_alur  = (dex_opcode == 7'b0110011);
     wire [2:0]  ex_f3       = dex_inst[14:12];
 
+    // 寄存器堆实时读(兜底前递:WB 写回完成后但 ID 采样值已旧的场景)
+    wire [31:0] rf_lv1 = (dex_rs1 == 5'd0) ? 32'b0 : rf[dex_rs1];
+    wire [31:0] rf_lv2 = (dex_rs2 == 5'd0) ? 32'b0 : rf[dex_rs2];
+
     // ==================== 前递 ====================
     wire        exm_fwd_v = exm_v && exm_wr && !exm_ld;   // load 取值未就绪不前递
     wire [31:0] fwd_a = (dex_v && dex_rs1 != 0 && dex_rs1 == exm_rd && exm_fwd_v) ? exm_alu :
-                        (dex_v && dex_rs1 != 0 && dex_rs1 == mwb_rd && mwb_v && mwb_wr) ? (mwb_ld ? mwb_ldata : mwb_alu) :
-                        dex_rsv1;
+                        (dex_v && dex_rs1 != 0 && dex_rs1 == mwb_rd && mwb_v && mwb_wr) ? (mwb_ld ? mwb_ldata : mwb_alu) : rf_lv1;
     wire [31:0] fwd_b = (dex_v && dex_rs2 != 0 && dex_rs2 == exm_rd && exm_fwd_v) ? exm_alu :
-                        (dex_v && dex_rs2 != 0 && dex_rs2 == mwb_rd && mwb_v && mwb_wr) ? (mwb_ld ? mwb_ldata : mwb_alu) :
-                        dex_rsv2;
+                        (dex_v && dex_rs2 != 0 && dex_rs2 == mwb_rd && mwb_v && mwb_wr) ? (mwb_ld ? mwb_ldata : mwb_alu) : rf_lv2;
 
     // ==================== EX ====================
     wire [31:0] imm_i = {{20{dex_inst[31]}}, dex_inst[31:20]};
@@ -106,7 +110,10 @@ module rv32i_core #(
                            ex_is_jal            ? imm_j : imm_i;
     wire [4:0]  shamt    = op_b[4:0];
     wire [31:0] sum      = op_a + op_b;
+    // 算术右移显式符号填充($signed>>> 在混合 unsigned 的嵌套三元里会被强转逻辑移位)
+    wire [31:0] sra_res  = (op_a >> shamt) | ({32{op_a[31]}} << (6'd32 - {1'b0, shamt}));
     wire [31:0] alu_out =
+        (ex_is_load | ex_is_store) ? sum :   // load/store 强制地址计算,不进 f3 分派
         ex_is_branch ? 32'b0 :
         ex_is_jal    ? dex_pc + 32'd4 :
         ex_is_jalr   ? dex_pc + 32'd4 :
@@ -117,7 +124,7 @@ module rv32i_core #(
         (ex_f3 == 3'd2) ? {31'b0, $signed(op_a) < $signed(op_b)} :
         (ex_f3 == 3'd3) ? {31'b0, op_a < op_b} :
         (ex_f3 == 3'd4) ? (op_a ^ op_b) :
-        (ex_f3 == 3'd5) ? (sub_sel ? ($signed(op_a) >>> shamt) : (op_a >> shamt)) :
+        (ex_f3 == 3'd5) ? (sub_sel ? sra_res : (op_a >> shamt)) :
         (ex_f3 == 3'd6) ? (op_a | op_b) : (op_a & op_b);
 
     wire beq  = (fwd_a == fwd_b);
@@ -146,20 +153,35 @@ module rv32i_core #(
     wire        hit_gpio = (exm_alu == 32'h1000);
     wire        hit_host = (exm_alu == 32'h1008);
     wire        dmem_we  = exm_v && exm_st && !hit_gpio && !hit_host;
-    reg  [31:0] dmem_rd;
+    wire [31:0] dmem_rd  = umem[exm_alu[11:2]];  // 组合读(寄存读会与 mwb_ldata 同沿级联,错位一拍)
+    wire [1:0]  lane     = exm_alu[1:0];
+    wire [7:0]  sb_byte  = exm_stv[7:0];
+    wire [15:0] sh_half  = exm_stv[15:0];
     always @(posedge clk) if (exm_v) begin
-        if (dmem_we) dmem[exm_alu[11:2]] <= exm_stv;
-        dmem_rd <= dmem[exm_alu[11:2]];
+        if (dmem_we) begin
+            // 子字合并整字读改写(dmem[i][part] 切片赋值在 Verilog-2001 非法,ModelSim 静默丢写)
+            case (exm_f3[1:0])
+                2'b00: umem[exm_alu[11:2]] <=
+                       (lane == 2'd0) ? {dmem_rd[31:8],  sb_byte} :
+                       (lane == 2'd1) ? {dmem_rd[31:16], sb_byte, dmem_rd[7:0]} :
+                       (lane == 2'd2) ? {dmem_rd[31:24], sb_byte, dmem_rd[15:0]} :
+                                        {sb_byte, dmem_rd[23:0]};
+                2'b01: umem[exm_alu[11:2]] <=
+                       lane[1] ? {sh_half, dmem_rd[15:0]} : {dmem_rd[31:16], sh_half};
+                default: umem[exm_alu[11:2]] <= exm_stv;
+            endcase
+        end
     end
-    // 子字加载提取(f3: 0=lb 1=lh 2=lw 4=lbu 5=lhu)
-    wire [1:0] lane = exm_alu[1:0];
+    // 子字加载提取(f3: 0=lb 1=lh 2=lw 4=lbu 5=lhu);符号扩展取字段符号位
+    wire [7:0]  ld_b = dmem_rd[lane*8 +: 8];
+    wire [15:0] ld_h = lane[1] ? dmem_rd[31:16] : dmem_rd[15:0];
     reg  [31:0] ld_sub;
     always @* begin
         case (exm_f3)
-            3'd0: ld_sub = {{24{dmem_rd[lane*8 +: 8]}}, dmem_rd[lane*8 +: 8]};
-            3'd1: ld_sub = {{16{dmem_rd[lane*16 +: 16]}}, dmem_rd[lane*16 +: 16]};
-            3'd4: ld_sub = {24'b0, dmem_rd[lane*8 +: 8]};
-            3'd5: ld_sub = {16'b0, dmem_rd[lane*16 +: 16]};
+            3'd0: ld_sub = {{24{ld_b[7]}}, ld_b};
+            3'd1: ld_sub = {{16{ld_h[15]}}, ld_h};
+            3'd4: ld_sub = {24'b0, ld_b};
+            3'd5: ld_sub = {16'b0, ld_h};
             default: ld_sub = dmem_rd;
         endcase
     end
@@ -181,7 +203,7 @@ module rv32i_core #(
     assign ret_pc     = mwb_pc;
     assign ret_rd     = mwb_wr ? mwb_rd : 5'b0;   // 不写回的指令(分支/store)rd 屏蔽为 0
     assign ret_rd_en  = mwb_wr;
-    assign ret_wdata  = rf_wd;
+    assign ret_wdata  = mwb_wr ? rf_wd : 32'b0;   // 不写回指令 wdata 屏蔽,与 ISS 踪迹约定一致
 
     // ==================== 级间推进 ====================
     always @(posedge clk) begin
@@ -224,9 +246,10 @@ module rv32i_core #(
             dex_rsv2 <= rv2;
 
             // ---- IF/ID ----
-            ifd_v    <= !flush && !stall;
-            ifd_pc   <= pc;
-            ifd_inst <= imem_rdata;
+            // stall 拍 IF/ID 整体保持(pc 已指下一条,重读会覆盖被停指令);仅 flush 清有效
+            ifd_v    <= !flush && (!stall || ifd_v);
+            ifd_pc   <= stall ? ifd_pc : pc;
+            ifd_inst <= stall ? ifd_inst : imem_rdata;
 
             // ---- MEM/WB ----
             mwb_v     <= exm_v;

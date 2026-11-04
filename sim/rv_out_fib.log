@@ -1,0 +1,299 @@
+Reading pref.tcl
+
+# 2020.4
+
+# do sim/rv.do
+# ** Warning: (vlib-34) Library already exists at "sim/work".
+# Errors: 0, Warnings: 1
+# Model Technology ModelSim SE-64 vmap 2020.4 Lib Mapping Utility 2020.10 Oct 13 2020
+# vmap work sim/work 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
+# Start time: 00:21:47 on Nov 05,2026
+# vlog rtl/rv32i_core.v tb/tb_rv32i.v 
+# -- Compiling module rv32i_core
+# -- Compiling module tb_rv32i
+# 
+# Top level modules:
+# 	tb_rv32i
+# End time: 00:21:47 on Nov 05,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim work.tb_rv32i "+TRACE=vectors/trace.hex" 
+# Start time: 00:21:47 on Nov 05,2026
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# //  ModelSim SE-64 2020.4 Oct 13 2020
+# //
+# //  Copyright 1991-2020 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_rv32i(fast)
+# RV: expect 612 words (204 retires)
+# RET 0 pc=00000000 wdata=00000000 rden=1 rd=10
+# RET 1 pc=00000004 wdata=00000001 rden=1 rd=11
+# SRADBG t=115000 inst=01000693 sub_sel=0 op_a=00000000 shamt=16 alu=00000010 f3=0
+# RET 2 pc=00000008 wdata=00000100 rden=1 rd=12
+# RET 3 pc=0000000c wdata=00000010 rden=1 rd=13
+# EXDBG t=135000 rsv1=0 rsv2=1 fwd_a=0 fwd_b=1 alu=1 dex_pc=00000014
+# LDBG t=135000 ld=0 st=1 addr=00000100 stv=00000000 pc=00000010 rf12=00000100
+# RET 4 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 5 pc=00000014 wdata=00000001 rden=1 rd=14
+# RET 6 pc=00000018 wdata=00000001 rden=1 rd=10
+# RET 7 pc=0000001c wdata=00000001 rden=1 rd=11
+# RET 8 pc=00000020 wdata=00000104 rden=1 rd=12
+# RET 9 pc=00000024 wdata=0000000f rden=1 rd=13
+# RET 10 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=225000 rsv1=1 rsv2=1 fwd_a=1 fwd_b=1 alu=2 dex_pc=00000014
+# LDBG t=225000 ld=0 st=1 addr=00000104 stv=00000001 pc=00000010 rf12=00000104
+# RET 11 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 12 pc=00000014 wdata=00000002 rden=1 rd=14
+# RET 13 pc=00000018 wdata=00000001 rden=1 rd=10
+# RET 14 pc=0000001c wdata=00000002 rden=1 rd=11
+# RET 15 pc=00000020 wdata=00000108 rden=1 rd=12
+# RET 16 pc=00000024 wdata=0000000e rden=1 rd=13
+# RET 17 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=315000 rsv1=1 rsv2=2 fwd_a=1 fwd_b=2 alu=3 dex_pc=00000014
+# LDBG t=315000 ld=0 st=1 addr=00000108 stv=00000001 pc=00000010 rf12=00000108
+# RET 18 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 19 pc=00000014 wdata=00000003 rden=1 rd=14
+# RET 20 pc=00000018 wdata=00000002 rden=1 rd=10
+# RET 21 pc=0000001c wdata=00000003 rden=1 rd=11
+# RET 22 pc=00000020 wdata=0000010c rden=1 rd=12
+# RET 23 pc=00000024 wdata=0000000d rden=1 rd=13
+# RET 24 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=405000 rsv1=2 rsv2=3 fwd_a=2 fwd_b=3 alu=5 dex_pc=00000014
+# LDBG t=405000 ld=0 st=1 addr=0000010c stv=00000002 pc=00000010 rf12=0000010c
+# RET 25 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 26 pc=00000014 wdata=00000005 rden=1 rd=14
+# RET 27 pc=00000018 wdata=00000003 rden=1 rd=10
+# RET 28 pc=0000001c wdata=00000005 rden=1 rd=11
+# RET 29 pc=00000020 wdata=00000110 rden=1 rd=12
+# RET 30 pc=00000024 wdata=0000000c rden=1 rd=13
+# RET 31 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=495000 rsv1=3 rsv2=5 fwd_a=3 fwd_b=5 alu=8 dex_pc=00000014
+# LDBG t=495000 ld=0 st=1 addr=00000110 stv=00000003 pc=00000010 rf12=00000110
+# RET 32 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 33 pc=00000014 wdata=00000008 rden=1 rd=14
+# RET 34 pc=00000018 wdata=00000005 rden=1 rd=10
+# RET 35 pc=0000001c wdata=00000008 rden=1 rd=11
+# RET 36 pc=00000020 wdata=00000114 rden=1 rd=12
+# RET 37 pc=00000024 wdata=0000000b rden=1 rd=13
+# RET 38 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=585000 rsv1=5 rsv2=8 fwd_a=5 fwd_b=8 alu=13 dex_pc=00000014
+# LDBG t=585000 ld=0 st=1 addr=00000114 stv=00000005 pc=00000010 rf12=00000114
+# RET 39 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 40 pc=00000014 wdata=0000000d rden=1 rd=14
+# RET 41 pc=00000018 wdata=00000008 rden=1 rd=10
+# RET 42 pc=0000001c wdata=0000000d rden=1 rd=11
+# RET 43 pc=00000020 wdata=00000118 rden=1 rd=12
+# RET 44 pc=00000024 wdata=0000000a rden=1 rd=13
+# RET 45 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=675000 rsv1=8 rsv2=13 fwd_a=8 fwd_b=13 alu=21 dex_pc=00000014
+# LDBG t=675000 ld=0 st=1 addr=00000118 stv=00000008 pc=00000010 rf12=00000118
+# RET 46 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 47 pc=00000014 wdata=00000015 rden=1 rd=14
+# RET 48 pc=00000018 wdata=0000000d rden=1 rd=10
+# RET 49 pc=0000001c wdata=00000015 rden=1 rd=11
+# RET 50 pc=00000020 wdata=0000011c rden=1 rd=12
+# RET 51 pc=00000024 wdata=00000009 rden=1 rd=13
+# RET 52 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=765000 rsv1=13 rsv2=21 fwd_a=13 fwd_b=21 alu=34 dex_pc=00000014
+# LDBG t=765000 ld=0 st=1 addr=0000011c stv=0000000d pc=00000010 rf12=0000011c
+# RET 53 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 54 pc=00000014 wdata=00000022 rden=1 rd=14
+# RET 55 pc=00000018 wdata=00000015 rden=1 rd=10
+# RET 56 pc=0000001c wdata=00000022 rden=1 rd=11
+# RET 57 pc=00000020 wdata=00000120 rden=1 rd=12
+# RET 58 pc=00000024 wdata=00000008 rden=1 rd=13
+# RET 59 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=855000 rsv1=21 rsv2=34 fwd_a=21 fwd_b=34 alu=55 dex_pc=00000014
+# LDBG t=855000 ld=0 st=1 addr=00000120 stv=00000015 pc=00000010 rf12=00000120
+# RET 60 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 61 pc=00000014 wdata=00000037 rden=1 rd=14
+# RET 62 pc=00000018 wdata=00000022 rden=1 rd=10
+# RET 63 pc=0000001c wdata=00000037 rden=1 rd=11
+# RET 64 pc=00000020 wdata=00000124 rden=1 rd=12
+# RET 65 pc=00000024 wdata=00000007 rden=1 rd=13
+# RET 66 pc=00000028 wdata=00000000 rden=0 rd=0
+# EXDBG t=945000 rsv1=34 rsv2=55 fwd_a=34 fwd_b=55 alu=89 dex_pc=00000014
+# LDBG t=945000 ld=0 st=1 addr=00000124 stv=00000022 pc=00000010 rf12=00000124
+# RET 67 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 68 pc=00000014 wdata=00000059 rden=1 rd=14
+# RET 69 pc=00000018 wdata=00000037 rden=1 rd=10
+# RET 70 pc=0000001c wdata=00000059 rden=1 rd=11
+# RET 71 pc=00000020 wdata=00000128 rden=1 rd=12
+# RET 72 pc=00000024 wdata=00000006 rden=1 rd=13
+# RET 73 pc=00000028 wdata=00000000 rden=0 rd=0
+# LDBG t=1035000 ld=0 st=1 addr=00000128 stv=00000037 pc=00000010 rf12=00000128
+# RET 74 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 75 pc=00000014 wdata=00000090 rden=1 rd=14
+# RET 76 pc=00000018 wdata=00000059 rden=1 rd=10
+# RET 77 pc=0000001c wdata=00000090 rden=1 rd=11
+# RET 78 pc=00000020 wdata=0000012c rden=1 rd=12
+# RET 79 pc=00000024 wdata=00000005 rden=1 rd=13
+# RET 80 pc=00000028 wdata=00000000 rden=0 rd=0
+# LDBG t=1125000 ld=0 st=1 addr=0000012c stv=00000059 pc=00000010 rf12=0000012c
+# RET 81 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 82 pc=00000014 wdata=000000e9 rden=1 rd=14
+# RET 83 pc=00000018 wdata=00000090 rden=1 rd=10
+# RET 84 pc=0000001c wdata=000000e9 rden=1 rd=11
+# RET 85 pc=00000020 wdata=00000130 rden=1 rd=12
+# RET 86 pc=00000024 wdata=00000004 rden=1 rd=13
+# RET 87 pc=00000028 wdata=00000000 rden=0 rd=0
+# LDBG t=1215000 ld=0 st=1 addr=00000130 stv=00000090 pc=00000010 rf12=00000130
+# RET 88 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 89 pc=00000014 wdata=00000179 rden=1 rd=14
+# RET 90 pc=00000018 wdata=000000e9 rden=1 rd=10
+# RET 91 pc=0000001c wdata=00000179 rden=1 rd=11
+# RET 92 pc=00000020 wdata=00000134 rden=1 rd=12
+# RET 93 pc=00000024 wdata=00000003 rden=1 rd=13
+# RET 94 pc=00000028 wdata=00000000 rden=0 rd=0
+# LDBG t=1305000 ld=0 st=1 addr=00000134 stv=000000e9 pc=00000010 rf12=00000134
+# RET 95 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 96 pc=00000014 wdata=00000262 rden=1 rd=14
+# RET 97 pc=00000018 wdata=00000179 rden=1 rd=10
+# RET 98 pc=0000001c wdata=00000262 rden=1 rd=11
+# RET 99 pc=00000020 wdata=00000138 rden=1 rd=12
+# RET 100 pc=00000024 wdata=00000002 rden=1 rd=13
+# RET 101 pc=00000028 wdata=00000000 rden=0 rd=0
+# LDBG t=1395000 ld=0 st=1 addr=00000138 stv=00000179 pc=00000010 rf12=00000138
+# RET 102 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 103 pc=00000014 wdata=000003db rden=1 rd=14
+# RET 104 pc=00000018 wdata=00000262 rden=1 rd=10
+# RET 105 pc=0000001c wdata=000003db rden=1 rd=11
+# RET 106 pc=00000020 wdata=0000013c rden=1 rd=12
+# RET 107 pc=00000024 wdata=00000001 rden=1 rd=13
+# RET 108 pc=00000028 wdata=00000000 rden=0 rd=0
+# LDBG t=1485000 ld=0 st=1 addr=0000013c stv=00000262 pc=00000010 rf12=0000013c
+# RET 109 pc=00000010 wdata=00000000 rden=0 rd=0
+# RET 110 pc=00000014 wdata=0000063d rden=1 rd=14
+# RET 111 pc=00000018 wdata=000003db rden=1 rd=10
+# RET 112 pc=0000001c wdata=0000063d rden=1 rd=11
+# RET 113 pc=00000020 wdata=00000140 rden=1 rd=12
+# RET 114 pc=00000024 wdata=00000000 rden=1 rd=13
+# RET 115 pc=00000028 wdata=00000000 rden=0 rd=0
+# RET 116 pc=0000002c wdata=00000100 rden=1 rd=12
+# RET 117 pc=00000030 wdata=00000010 rden=1 rd=13
+# RET 118 pc=00000034 wdata=00000000 rden=1 rd=14
+# LDBG t=1585000 ld=1 st=0 addr=00000100 stv=00000000 pc=00000038 rf12=00000100
+# RET 119 pc=00000038 wdata=00000000 rden=1 rd=15
+# RET 120 pc=0000003c wdata=00000000 rden=1 rd=14
+# RET 121 pc=00000040 wdata=00000104 rden=1 rd=12
+# RET 122 pc=00000044 wdata=0000000f rden=1 rd=13
+# RET 123 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=1665000 ld=1 st=0 addr=00000104 stv=00000000 pc=00000038 rf12=00000104
+# RET 124 pc=00000038 wdata=00000001 rden=1 rd=15
+# RET 125 pc=0000003c wdata=00000001 rden=1 rd=14
+# RET 126 pc=00000040 wdata=00000108 rden=1 rd=12
+# RET 127 pc=00000044 wdata=0000000e rden=1 rd=13
+# RET 128 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=1745000 ld=1 st=0 addr=00000108 stv=00000000 pc=00000038 rf12=00000108
+# RET 129 pc=00000038 wdata=00000001 rden=1 rd=15
+# RET 130 pc=0000003c wdata=00000002 rden=1 rd=14
+# RET 131 pc=00000040 wdata=0000010c rden=1 rd=12
+# RET 132 pc=00000044 wdata=0000000d rden=1 rd=13
+# RET 133 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=1825000 ld=1 st=0 addr=0000010c stv=00000000 pc=00000038 rf12=0000010c
+# RET 134 pc=00000038 wdata=00000002 rden=1 rd=15
+# RET 135 pc=0000003c wdata=00000004 rden=1 rd=14
+# RET 136 pc=00000040 wdata=00000110 rden=1 rd=12
+# RET 137 pc=00000044 wdata=0000000c rden=1 rd=13
+# RET 138 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=1905000 ld=1 st=0 addr=00000110 stv=00000000 pc=00000038 rf12=00000110
+# RET 139 pc=00000038 wdata=00000003 rden=1 rd=15
+# RET 140 pc=0000003c wdata=00000007 rden=1 rd=14
+# RET 141 pc=00000040 wdata=00000114 rden=1 rd=12
+# RET 142 pc=00000044 wdata=0000000b rden=1 rd=13
+# RET 143 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=1985000 ld=1 st=0 addr=00000114 stv=00000000 pc=00000038 rf12=00000114
+# RET 144 pc=00000038 wdata=00000005 rden=1 rd=15
+# RET 145 pc=0000003c wdata=0000000c rden=1 rd=14
+# RET 146 pc=00000040 wdata=00000118 rden=1 rd=12
+# RET 147 pc=00000044 wdata=0000000a rden=1 rd=13
+# RET 148 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2065000 ld=1 st=0 addr=00000118 stv=00000000 pc=00000038 rf12=00000118
+# RET 149 pc=00000038 wdata=00000008 rden=1 rd=15
+# RET 150 pc=0000003c wdata=00000014 rden=1 rd=14
+# RET 151 pc=00000040 wdata=0000011c rden=1 rd=12
+# RET 152 pc=00000044 wdata=00000009 rden=1 rd=13
+# RET 153 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2145000 ld=1 st=0 addr=0000011c stv=00000000 pc=00000038 rf12=0000011c
+# RET 154 pc=00000038 wdata=0000000d rden=1 rd=15
+# RET 155 pc=0000003c wdata=00000021 rden=1 rd=14
+# RET 156 pc=00000040 wdata=00000120 rden=1 rd=12
+# RET 157 pc=00000044 wdata=00000008 rden=1 rd=13
+# RET 158 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2225000 ld=1 st=0 addr=00000120 stv=00000000 pc=00000038 rf12=00000120
+# RET 159 pc=00000038 wdata=00000015 rden=1 rd=15
+# RET 160 pc=0000003c wdata=00000036 rden=1 rd=14
+# RET 161 pc=00000040 wdata=00000124 rden=1 rd=12
+# RET 162 pc=00000044 wdata=00000007 rden=1 rd=13
+# RET 163 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2305000 ld=1 st=0 addr=00000124 stv=00000000 pc=00000038 rf12=00000124
+# RET 164 pc=00000038 wdata=00000022 rden=1 rd=15
+# RET 165 pc=0000003c wdata=00000058 rden=1 rd=14
+# RET 166 pc=00000040 wdata=00000128 rden=1 rd=12
+# RET 167 pc=00000044 wdata=00000006 rden=1 rd=13
+# RET 168 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2385000 ld=1 st=0 addr=00000128 stv=00000000 pc=00000038 rf12=00000128
+# RET 169 pc=00000038 wdata=00000037 rden=1 rd=15
+# RET 170 pc=0000003c wdata=0000008f rden=1 rd=14
+# RET 171 pc=00000040 wdata=0000012c rden=1 rd=12
+# RET 172 pc=00000044 wdata=00000005 rden=1 rd=13
+# RET 173 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2465000 ld=1 st=0 addr=0000012c stv=00000000 pc=00000038 rf12=0000012c
+# RET 174 pc=00000038 wdata=00000059 rden=1 rd=15
+# RET 175 pc=0000003c wdata=000000e8 rden=1 rd=14
+# RET 176 pc=00000040 wdata=00000130 rden=1 rd=12
+# RET 177 pc=00000044 wdata=00000004 rden=1 rd=13
+# RET 178 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2545000 ld=1 st=0 addr=00000130 stv=00000000 pc=00000038 rf12=00000130
+# RET 179 pc=00000038 wdata=00000090 rden=1 rd=15
+# RET 180 pc=0000003c wdata=00000178 rden=1 rd=14
+# RET 181 pc=00000040 wdata=00000134 rden=1 rd=12
+# RET 182 pc=00000044 wdata=00000003 rden=1 rd=13
+# RET 183 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2625000 ld=1 st=0 addr=00000134 stv=00000000 pc=00000038 rf12=00000134
+# RET 184 pc=00000038 wdata=000000e9 rden=1 rd=15
+# RET 185 pc=0000003c wdata=00000261 rden=1 rd=14
+# RET 186 pc=00000040 wdata=00000138 rden=1 rd=12
+# RET 187 pc=00000044 wdata=00000002 rden=1 rd=13
+# RET 188 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2705000 ld=1 st=0 addr=00000138 stv=00000000 pc=00000038 rf12=00000138
+# RET 189 pc=00000038 wdata=00000179 rden=1 rd=15
+# RET 190 pc=0000003c wdata=000003da rden=1 rd=14
+# RET 191 pc=00000040 wdata=0000013c rden=1 rd=12
+# RET 192 pc=00000044 wdata=00000001 rden=1 rd=13
+# RET 193 pc=00000048 wdata=00000000 rden=0 rd=0
+# LDBG t=2785000 ld=1 st=0 addr=0000013c stv=00000000 pc=00000038 rf12=0000013c
+# RET 194 pc=00000038 wdata=00000262 rden=1 rd=15
+# RET 195 pc=0000003c wdata=0000063c rden=1 rd=14
+# RET 196 pc=00000040 wdata=00000140 rden=1 rd=12
+# RET 197 pc=00000044 wdata=00000000 rden=1 rd=13
+# RET 198 pc=00000048 wdata=00000000 rden=0 rd=0
+# RET 199 pc=0000004c wdata=00001000 rden=1 rd=7
+# LDBG t=2855000 ld=0 st=1 addr=00001000 stv=0000063c pc=00000050 rf12=00000140
+# RET 200 pc=00000050 wdata=00000000 rden=0 rd=0
+# RET 201 pc=00000054 wdata=00001008 rden=1 rd=28
+# RET 202 pc=00000058 wdata=00000002 rden=1 rd=15
+# LDBG t=2885000 ld=0 st=1 addr=00001008 stv=00000002 pc=0000005c rf12=00000140
+# RET 203 pc=0000005c wdata=00000000 rden=0 rd=0
+# RFDBG a0=000003db a1=0000063d a2=00000140 a3=00000000 a4=0000063c
+# RFHIST pc=0000005c w=0 rd=00000 wd=00001008
+# RET 204 pc=00000060 wdata=00000064 rden=1 rd=0
+# RET 205 pc=00000038 wdata=00000000 rden=1 rd=15
+# RET 206 pc=0000003c wdata=0000063c rden=1 rd=14
+# RET 207 pc=00000040 wdata=00000144 rden=1 rd=12
+# RET 208 pc=00000044 wdata=ffffffff rden=1 rd=13
+# RV32I SELF-CHECK PASS (204 retires, gpio=0000063c)
+# ** Note: $finish    : tb/tb_rv32i.v(115)
+#    Time: 2975 ns  Iteration: 1  Instance: /tb_rv32i
+# End time: 00:21:48 on Nov 05,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

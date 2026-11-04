@@ -190,10 +190,12 @@ class ISS:
         jimm = ((inst >> 31) << 20) | (((inst >> 12) & 0xFF) << 12) | (((inst >> 20) & 1) << 11) | (((inst >> 21) & 0x3FF) << 1)
         jimm = jimm - (1 << 21) if jimm >= (1 << 20) else jimm
         rdv, nxt = None, pc + 4
+        sa = a - (1 << 32) if a & (1 << 31) else a      # signed 视图(Python 存储为无符号)
+        sb = b - (1 << 32) if b & (1 << 31) else b
         if op == 0x33:
             if f7 == 0x00:
                 rdv = [ (a + b) & 0xFFFFFFFF, (a << (b & 31)) & 0xFFFFFFFF,
-                        (1 if a < b else 0), (1 if (a & 0xFFFFFFFF) < (b & 0xFFFFFFFF) else 0),
+                        (1 if sa < sb else 0), (1 if (a & 0xFFFFFFFF) < (b & 0xFFFFFFFF) else 0),
                         a ^ b, (a & 0xFFFFFFFF) >> (b & 31),
                         ((a - (1 << 32) if a & (1 << 31) else a) >> (b & 31)) & 0xFFFFFFFF,
                         a | b, a & b ][f3]
@@ -203,13 +205,15 @@ class ISS:
                 sa = a - (1 << 32) if a & (1 << 31) else a
                 rdv = (sa >> (b & 31)) & 0xFFFFFFFF
         elif op == 0x13:
-            rdv = [ (a + iimm) & 0xFFFFFFFF, None, (1 if a < iimm else 0),
-                    (1 if (a & 0xFFFFFFFF) < (iimm & 0xFFFFFFFF) else 0), a ^ iimm,
-                    (a & 0xFFFFFFFF) >> (iimm & 31),
-                    ((a - (1<<32) if a & (1<<31) else a) >> (iimm & 31)) & 0xFFFFFFFF,
-                    a | iimm, a & iimm ][f3]
-            if f3 == 1:
+            if f3 == 1:                          # slli
                 rdv = (a << (iimm & 31)) & 0xFFFFFFFF
+            elif f3 == 5 and (inst >> 30) & 1:   # srai(f3=5 由 inst[30] 区分 srli/srai)
+                rdv = ((a - (1<<32) if a & (1<<31) else a) >> (iimm & 31)) & 0xFFFFFFFF
+            else:
+                rdv = [ (a + iimm) & 0xFFFFFFFF, None, (1 if sa < iimm else 0),
+                        (1 if (a & 0xFFFFFFFF) < (iimm & 0xFFFFFFFF) else 0), a ^ iimm,
+                        (a & 0xFFFFFFFF) >> (iimm & 31),
+                        a | iimm, a & iimm ][f3]
         elif op == 0x03:
             rdv = dict([(0, lambda: self.lb(a + iimm) & 0xFFFFFFFF), (1, lambda: self.lh(a + iimm) & 0xFFFFFFFF),
                         (2, lambda: self.lw(a + iimm) & 0xFFFFFFFF),
@@ -223,8 +227,8 @@ class ISS:
             else:
                 [self.sb, self.sh, self.sw][f3](ea, b)
         elif op == 0x63:
-            take = dict([(0, lambda: a == b), (1, lambda: a != b), (4, lambda: a < b),
-                         (5, lambda: a >= b), (6, lambda: (a & 0xFFFFFFFF) < (b & 0xFFFFFFFF)),
+            take = dict([(0, lambda: a == b), (1, lambda: a != b), (4, lambda: sa < sb),
+                         (5, lambda: sa >= sb), (6, lambda: (a & 0xFFFFFFFF) < (b & 0xFFFFFFFF)),
                          (7, lambda: (a & 0xFFFFFFFF) >= (b & 0xFFFFFFFF))])[f3]()
             nxt = pc + (bimm if take else 4)
         elif op == 0x6F:
