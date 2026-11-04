@@ -1,0 +1,10 @@
+# RK-ZYNQ7020-F (xc7z020clg484-2): 50MHz W17, LED
+set_property -dict {PACKAGE_PIN W17 IOSTANDARD LVCMOS33} [get_ports clk]
+set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports rst_n]
+set_property -dict {PACKAGE_PIN H17 IOSTANDARD LVCMOS33} [get_ports {gpio_out[0]}]
+set_property -dict {PACKAGE_PIN K15 IOSTANDARD LVCMOS33} [get_ports {gpio_out[1]}]
+set_property -dict {PACKAGE_PIN J15 IOSTANDARD LVCMOS33} [get_ports {gpio_out[2]}]
+set_property -dict {PACKAGE_PIN E14 IOSTANDARD LVCMOS33} [get_ports {gpio_out[3]}]
+set_property -dict {PACKAGE_PIN E15 IOSTANDARD LVCMOS33} [get_ports {gpio_out[4]}]
+set_property -dict {PACKAGE_PIN D15 IOSTANDARD LVCMOS33} [get_ports {gpio_out[5]}]
+create_clock -period 20.000 -name sys_clk [get_ports clk]
