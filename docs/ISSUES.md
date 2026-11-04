@@ -16,8 +16,20 @@ dex_inst(ID/EX 寄存后)译码。修复后流水线正确跑通 fib 全程序(p
 - retires 0-4(含 addi a0=0/a1=1/a2=256/a3=16 与 sw)全部正确。
 - RFDBG 超时后镜像:rf[x] = 0x3bad0 + x(连续模式,非程序应有值),tohost 未置位
   (程序 400K 拍未到 halt,疑循环失控或访存地址走飞)。
+- 本轮新证据(RFHIST):唯一一条 WB 写 pc=0x20(addi a2,a2,4)wd=0x3badf
+  = a1 的值(0x3badb)+4,即 rs1=x12 的操作数被送入了 a1(x11)的值——
+  前递/读口在 x11/x12 之间串了;且 rf 全体呈现 rf[x]=0x3bad0+x 的模式。
 - 下一步(新会话,~30 分钟):
   1. TB 打印 dut.dex_rsv1/rsv2 与 fwd_a/fwd_b 逐拍(retire 5 的 EX 前 3 拍)
   2. 对照 ISS 的 a0=0/a1=1,前递源应为 dex_rsv 旧值(无 fwd 需求)
   3. 重点检查 rf 异步读 + mwb 同步写的读旧值窗口,及 dex_rsv 采样时序
 - ISS 侧完全可信(独立验证过),全部问题在 RTL 数据链。
+
+## I-05 本轮修复(2026-11-04 第二轮,已提交)
+1. pc 的 X 泄漏:redirect 未按 dex_v 过滤(复位瞬态 X 经组合链污染 PC)
+2. flush 同样泄漏
+3. EX 段控制信号(is_jal/is_branch/is_store/is_lui 等)误用 IF/ID 级组合译码
+   (= 下一条指令!),重写为全部从 dex_inst(ID/EX 寄存后)译码
+4. MEM/WB 级寄存器整段漏赋值(mwb_v/pc/alu/ldata 从未更新 → retired=0)
+修复后:流水线跑通 fib 全程序(pc 轨迹含 16 次循环与 jal 回跳),5 测试全部
+执行至 tohost/超时,退休计数正确量级。

@@ -5,17 +5,17 @@
 # vmap work sim/work 
 # Modifying modelsim.ini
 # Model Technology ModelSim SE-64 vlog 2020.4 Compiler 2020.10 Oct 13 2020
-# Start time: 07:37:37 on Nov 04,2026
+# Start time: 23:10:53 on Nov 04,2026
 # vlog rtl/rv32i_core.v tb/tb_rv32i.v 
 # -- Compiling module rv32i_core
 # -- Compiling module tb_rv32i
 # 
 # Top level modules:
 # 	tb_rv32i
-# End time: 07:37:37 on Nov 04,2026, Elapsed time: 0:00:00
+# End time: 23:10:53 on Nov 04,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim work.tb_rv32i "+TRACE=vectors/trace.hex" 
-# Start time: 07:37:37 on Nov 04,2026
+# Start time: 23:10:53 on Nov 04,2026
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # //  ModelSim SE-64 2020.4 Oct 13 2020
 # //
@@ -73,6 +73,7 @@
 # DBG i=39 t=445000 rst=0 pc=0000002c imem=10000613 prog0=00000513 ifd_v=1 inst=fe0694e3 redirect=0
 # RV WARN: tohost 未写,按超时比对
 # RFDBG a0=0003bada a1=0003badb a2=0003bade a3=0003badd a4=0003badb
+# RFHIST pc=00000020 w=1 rd=01100 wd=0003badf
 # RV mismatch idx=16 (retire 5, field 1): got 0000000b exp 00000001
 # RV mismatch idx=22 (retire 7, field 1): got 0000000b exp 00000001
 # RV mismatch idx=25 (retire 8, field 1): got 0000000f exp 00000104
@@ -82,7 +83,7 @@
 # RV mismatch idx=40 (retire 13, field 1): got 0000000b exp 00000001
 # RV mismatch idx=43 (retire 14, field 1): got 0000000c exp 00000002
 # RV32I SELF-CHECK FAIL (340 errors)
-# ** Note: $finish    : tb/tb_rv32i.v(96)
+# ** Note: $finish    : tb/tb_rv32i.v(98)
 #    Time: 4000135 ns  Iteration: 1  Instance: /tb_rv32i
-# End time: 07:37:38 on Nov 04,2026, Elapsed time: 0:00:01
+# End time: 23:10:54 on Nov 04,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

@@ -73,6 +73,8 @@ module tb_rv32i;
         if (!tohost) $display("RV WARN: tohost 未写,按超时比对");
         $display("RFDBG a0=%h a1=%h a2=%h a3=%h a4=%h",
                  dut.rf[10], dut.rf[11], dut.rf[12], dut.rf[13], dut.rf[14]);
+        $display("RFHIST pc=%h w=%b rd=%b wd=%h",
+                 dut.mwb_pc, dut.mwb_wr, dut.mwb_rd, dut.rf_wd);
 
         repeat (8) @(posedge clk);   // 流水排空
 
