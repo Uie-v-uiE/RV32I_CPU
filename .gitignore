@@ -1,0 +1,16 @@
+# Vivado build artifacts
+build/
+*.bit
+*.dcp
+*.jou
+*.log
+.Xil/
+
+# ModelSim
+sim/work/
+transcript
+modelsim.ini
+vsim_stacktrace.vstf
+
+# Python
+__pycache__/
