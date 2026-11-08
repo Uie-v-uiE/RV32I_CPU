@@ -14,3 +14,4 @@ vsim_stacktrace.vstf
 
 # Python
 __pycache__/
+docs/LEARNING.md
